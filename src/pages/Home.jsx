@@ -1,5 +1,6 @@
 import { Grid } from "@mui/material"
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import Navbar from "../components/navbar"
 import Products from "../components/products";
 
@@ -14,17 +15,19 @@ function Home() {
     const [openDrawer, setOpenDrawer] = useState(false)
     const [selectProduct, setSelectProduct] = useState(null)
     const [openModal, setOpenModal] = useState(false)
-   
+    const products = useSelector(state => state.products.products)
+
+
     return (<>
         <Grid container spacing={2}>
             <Grid sx={{ display: 'flex', justifyContent: 'space-between' }} size={12}>
                 <Navbar setDrawerOpen={setOpenDrawer} />
             </Grid>
             <Grid sx={{ display: 'flex', justifyContent: 'center' }} >
-                <Products onSelectProduct={(product) => { setSelectProduct(product) }} onClick={() => setOpenModal(true)} />
+                <Products products={products} onSelectProduct={(product) => { setSelectProduct(product) }} onClick={() => setOpenModal(true)} />
             </Grid>
         </Grid>
-            <SlideDrawer openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
+        <SlideDrawer openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
         {openModal && selectProduct && <ProductModal id={selectProduct?.id} open={openModal} onClick={() => setOpenModal(false)} />}
     </>
     );

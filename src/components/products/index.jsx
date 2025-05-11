@@ -5,28 +5,14 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import { useEffect } from "react"
 import { Grid } from '@mui/material';
-import { useSelector, useDispatch } from 'react-redux';
-import { setProducts } from '../../store/productsSlice';
+import { useDispatch } from 'react-redux';
 import { addProductToCart } from '../../store/cartSlice';
 
-function Products({onSelectProduct, onClick}) {
-    const products = useSelector(state => state.products.products)
+function Products({ onSelectProduct, onClick, products }) {
     const dispatch = useDispatch()
-    const cartProducts = useSelector(state => state.cart.cart)
-    console.log(cartProducts)
 
-    useEffect(() => {
-        async function getProducts() {
-            const response = await fetch('https://fakestoreapi.com/products')
-            const data = await response.json()
-            dispatch(setProducts(data))
-        }
-        getProducts()
-    }, [dispatch])
-
-    return <>
+return <>
         <Grid container spacing={2}>
             {products.map((product) => {
                 return <Grid key={product.id} size={{ xs: 12, md: 3 }}>
@@ -41,7 +27,7 @@ function Products({onSelectProduct, onClick}) {
                                 {product.title}
                             </Typography>
                             <CardActions>
-                                <Button onClick={()=> {onSelectProduct(product); onClick()} } size="small">Description</Button>
+                                <Button onClick={() => { onSelectProduct(product); onClick() }} size="small">Description</Button>
                             </CardActions>
                         </CardContent>
                         <CardActions>

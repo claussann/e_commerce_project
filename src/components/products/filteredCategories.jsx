@@ -1,14 +1,12 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { addProductToCart } from "../../store/cartSlice";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import Navbar from "../navbar";
 import SlideDrawer from "../navbar/SlideDrawer";
 
 function FilteredCategories({ categories }) {
-    const navigate = useNavigate()
     const dispatch = useDispatch()
     const [openDrawer, setOpenDrawer] = useState(false)
     return (<>

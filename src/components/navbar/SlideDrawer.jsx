@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Collapse from '@mui/material/Collapse';
+import HomeIcon from '@mui/icons-material/Home';
 
 
 function SlideDrawer({ openDrawer, setOpenDrawer }) {
@@ -23,6 +24,12 @@ function SlideDrawer({ openDrawer, setOpenDrawer }) {
         <Drawer open={openDrawer} onClose={() => setOpenDrawer(false)}>
             <List>
                 <ListItem>
+                    <ListItemButton onClick={() => navigate('/')}>
+                        <ListItemIcon>
+                            <HomeIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Home" />
+                    </ListItemButton>
                     <ListItemButton onClick={goToCart}>
                         <Badge badgeContent={cartProducts.length} color="primary" />
                         <ListItemIcon>
