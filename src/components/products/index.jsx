@@ -5,17 +5,17 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { Grid } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { setProducts } from '../../store/productsSlice';
-import ProductModal from './Modal';
+import { addProductToCart } from '../../store/cartSlice';
 
-function Products() {
+function Products({onSelectProduct, onClick}) {
     const products = useSelector(state => state.products.products)
     const dispatch = useDispatch()
-    const [openModal,setOpenModal] = useState(false)
-    const [selectedProductId, setSelectedProductId] = useState(null)
+    const cartProducts = useSelector(state => state.cart.cart)
+    console.log(cartProducts)
 
     useEffect(() => {
         async function getProducts() {
@@ -25,11 +25,6 @@ function Products() {
         }
         getProducts()
     }, [dispatch])
-
-    const handleOpenModal = (id) => {
-        setSelectedProductId(id)
-        setOpenModal(true)
-    }
 
     return <>
         <Grid container spacing={2}>
@@ -46,17 +41,16 @@ function Products() {
                                 {product.title}
                             </Typography>
                             <CardActions>
-                                <Button onClick={() => handleOpenModal(product.id)} size="small">Description</Button>
+                                <Button onClick={()=> {onSelectProduct(product); onClick()} } size="small">Description</Button>
                             </CardActions>
-                            {selectedProductId && <ProductModal id={selectedProductId.id} open={openModal} setOpen={setOpenModal}/>}
                         </CardContent>
                         <CardActions>
-                            <Button size="small"><AddShoppingCartIcon />Add to Cart</Button>
+                            <Button onClick={() => dispatch(addProductToCart(product))} size="small"><AddShoppingCartIcon />Add to Cart</Button>
                         </CardActions>
                     </Card>
                 </Grid>
             })
-            };
+            }
         </Grid>
     </>
 }
