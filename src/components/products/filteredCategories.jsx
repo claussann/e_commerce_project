@@ -5,6 +5,7 @@ import { useState } from "react";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import Navbar from "../navbar";
 import SlideDrawer from "../navbar/SlideDrawer";
+import Carousel from "../navbar/Carousel";
 
 function FilteredCategories({ categories }) {
     const dispatch = useDispatch()
@@ -12,11 +13,21 @@ function FilteredCategories({ categories }) {
     return (<>
         <Grid container spacing={2}>
             <Navbar setDrawerOpen={setOpenDrawer} />
+            <Carousel />
             {categories.map((product) => {
                 return <Grid key={product.id} size={{ xs: 12, md: 3 }}>
-                    <Card sx={{ height: { xs: '100%', md: '100%' } }}>
+                    <Card sx={{
+                        display: 'flex', flexDirection: 'column', alignItems: 'center', margin: { xs: '10px', md: '20px' },
+                        height: { xs: '100%', md: 500 }
+                    }}>
                         <CardMedia
-                            sx={{ height: 200 }}
+                            sx={{
+                                width: { xs: '200px', md: '75%' },
+                                height: 200,
+                                objectFit: 'contain',
+                                objectPosition: 'center',
+                                margin: '5px'
+                            }}
                             image={product.image}
                             title={`${product.title}`} />
                         <CardContent>

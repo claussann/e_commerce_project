@@ -55,6 +55,9 @@ function SlideDrawer({ openDrawer, setOpenDrawer }) {
                     </List>
                 </Collapse>
             </List>
+            <div style={{ position: 'absolute', bottom: '0', width: '100%' }}>
+                <p style={{ textAlign: 'center', fontSize: '10px' }}>Carousel images are fetched from https://picsum.photos and products are fetched from https://fakestoreapi.com, thanks for the free api</p>
+            </div>
         </Drawer >
     )
 }

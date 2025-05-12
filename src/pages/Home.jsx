@@ -24,7 +24,7 @@ function Home() {
             <Grid sx={{ display: 'flex', justifyContent: 'space-between' }} size={12}>
                 <Navbar setDrawerOpen={setOpenDrawer} />
             </Grid>
-            <Carousel  />
+            <Carousel />
             <Grid sx={{ display: 'flex', justifyContent: 'center' }} >
                 <Products products={products} onSelectProduct={(product) => { setSelectProduct(product) }} onClick={() => setOpenModal(true)} />
             </Grid>

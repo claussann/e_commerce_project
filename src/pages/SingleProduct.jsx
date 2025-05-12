@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import OneProduct from "./Product"
+import Loading from "../components/navbar/Loading"
 
 
 function SingleProduct(){
@@ -10,7 +11,7 @@ function SingleProduct(){
     console.log(singleProduct)
         return (
             <> 
-                {!singleProduct && <h1>wait</h1>}
+                {!singleProduct && <Loading />}
                 {singleProduct && <OneProduct product={singleProduct} title={singleProduct.title} img={singleProduct.image} description={singleProduct.description}/>}
             </>
         )

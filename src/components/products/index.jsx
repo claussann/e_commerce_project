@@ -12,13 +12,23 @@ import { addProductToCart } from '../../store/cartSlice';
 function Products({ onSelectProduct, onClick, products }) {
     const dispatch = useDispatch()
 
-return <>
+    return <>
         <Grid container spacing={2}>
             {products.map((product) => {
                 return <Grid key={product.id} size={{ xs: 12, md: 3 }}>
-                    <Card sx={{ height: { xs: '100%', md: 500 } }}>
+                    <Card sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: { xs: '10px', md: '20px' },
+                        height: { xs: '100%', md: 500 } }}>
+                            <CardActions>
+                                <Button onClick={() => dispatch(addProductToCart(product))} size="small"><AddShoppingCartIcon />Add to Cart</Button>
+                            </CardActions>
                         <CardMedia
-                            sx={{ height: 200 }}
+                            sx={{
+                                width: { xs: '200px', md: '75%' },
+                                height: 200,
+                                objectFit: 'contain',
+                                objectPosition: 'center',
+                                margin: '5px'
+                            }}
                             image={product.image}
                             title={`${product.title}`} />
                         <CardContent>
@@ -30,9 +40,6 @@ return <>
                                 <Button onClick={() => { onSelectProduct(product); onClick() }} size="small">Description</Button>
                             </CardActions>
                         </CardContent>
-                        <CardActions>
-                            <Button onClick={() => dispatch(addProductToCart(product))} size="small"><AddShoppingCartIcon />Add to Cart</Button>
-                        </CardActions>
                     </Card>
                 </Grid>
             })
