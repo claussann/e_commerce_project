@@ -19,7 +19,7 @@ function App() {
       dispatch(setProducts(products))
     }
     getProducts()
-  },[])
+  },[dispatch])
   return(
     <BrowserRouter>
       <Routes>

@@ -3,9 +3,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import TextField from '@mui/material/TextField';
 import { useSelector } from 'react-redux';
-import Autocomplete from '@mui/material/Autocomplete';
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 

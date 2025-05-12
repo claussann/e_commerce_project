@@ -10,6 +10,7 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import ProductModal from "../components/products/Modal";
 import SlideDrawer from "../components/navbar/SlideDrawer";
+import Carousel from "../components/navbar/Carousel";
 
 function Home() {
     const [openDrawer, setOpenDrawer] = useState(false)
@@ -23,6 +24,7 @@ function Home() {
             <Grid sx={{ display: 'flex', justifyContent: 'space-between' }} size={12}>
                 <Navbar setDrawerOpen={setOpenDrawer} />
             </Grid>
+            <Carousel  />
             <Grid sx={{ display: 'flex', justifyContent: 'center' }} >
                 <Products products={products} onSelectProduct={(product) => { setSelectProduct(product) }} onClick={() => setOpenModal(true)} />
             </Grid>
