@@ -9,7 +9,7 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: 300,
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -20,9 +20,8 @@ function ProductModal({ id, open, onClick }) {
     const products = useSelector(state => state.products.products)
     const product = products.find(prod => prod.id === id)
 
-    return (
-        <div>
-            <Modal
+    return (<Modal keepMounted
+                sx={{ maxWidth: 'auto'}}
                 open={open}
                 onClose={onClick}
                 aria-labelledby="modal-modal-title"
@@ -31,7 +30,7 @@ function ProductModal({ id, open, onClick }) {
                 <Box sx={style}>
                     {product ? (
                         <>
-                            <Button sx={{ float: 'right'}} onClick={onClick}>Close</Button>
+                            <Button sx={{ float: 'right' }} onClick={onClick}>Close</Button>
                             <Typography id="modal-modal-title" variant="h6" component="h2">
                                 {product.title}
                             </Typography>
@@ -42,7 +41,6 @@ function ProductModal({ id, open, onClick }) {
                     ) : (<Typography>Product not found</Typography>)}
                 </Box>
             </Modal>
-        </div>
     );
 }
 
